@@ -1,0 +1,23 @@
+/* The arcade and the store terms page (each game has its own styles). */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100dvh; color: #f4f1ff; background: radial-gradient(circle at 50% 0%, #3b2a8a, #14102a 60%) fixed #14102a;
+  font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5;
+}
+a { color: inherit; }
+.arcade { max-width: 48rem; margin: 0 auto; padding: 40px 16px; display: grid; gap: 32px; }
+.arcade header { text-align: center; display: grid; gap: 8px; }
+.arcade h1 { font-size: 2.25rem; font-weight: 900; margin: 0; letter-spacing: -0.5px; }
+.arcade .logo { font-size: 3rem; }
+.dim { opacity: 0.75; margin: 0; }
+.games { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.games a { display: grid; gap: 12px; padding: 20px; border-radius: 16px; background: #221b45; box-shadow: 0 8px 24px #0008; text-decoration: none; transition: transform 0.15s; }
+.games a:hover { transform: translateY(-4px); }
+.games .emoji { font-size: 3rem; }
+.games .title { font-size: 1.5rem; font-weight: 800; }
+.terms { max-width: 42rem; margin: 0 auto; padding: 40px 16px; display: grid; gap: 16px; }
+.terms h1 { font-size: 1.9rem; font-weight: 900; margin: 0; }
+.terms h2 { font-size: 1.2rem; margin: 8px 0 0; }
+.terms ul { margin: 0; padding-left: 1.4rem; }
+.terms p { margin: 0; }
