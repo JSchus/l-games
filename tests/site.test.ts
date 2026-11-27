@@ -20,7 +20,7 @@ describe("the arcade", () => {
 
   it("never shows a first name in anything the public can load", () => {
     const files = GAMES.flatMap((g) => ["index.html", "game.js", "logic.js", "style.css"].map((f) => `${root}public/${g.slug}/${f}`));
-    files.push(`${root}app/page.tsx`, `${root}app/terms/page.tsx`, `${root}app/layout.tsx`);
+    files.push(`${root}app/page.tsx`, `${root}app/terms/page.tsx`, `${root}app/layout.tsx`, `${root}app/create/page.tsx`, `${root}app/create/create-game.tsx`, `${root}lib/lessons.ts`, `${root}lib/ideas.ts`);
     for (const f of files) expect(readFileSync(f, "utf8"), f).not.toMatch(/Logan/);
   });
 });

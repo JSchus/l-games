@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async rewrites() {
     // Each game is a folder of static files: /l-games/monster-packs serves its index.html.
-    return [{ source: "/:slug((?!api$|terms$)[a-z0-9-]+)", destination: "/:slug/index.html" }];
+    return [{ source: "/:slug((?!api$|terms$|create$)[a-z0-9-]+)", destination: "/:slug/index.html" }];
   },
   async headers() {
     // Keep everything off search engines.
