@@ -10,7 +10,7 @@ A small public arcade of kids' games, served at **https://schuster.me/l-games**.
 - Next.js 15 with `basePath: "/l-games"`. Arcade page `app/page.tsx`; terms `app/terms/page.tsx`.
 - Each game is static files in `public/<slug>/` (`index.html`, `style.css`, `logic.js` pure rules, `game.js` screens). `next.config.ts` rewrites `/l-games/<slug>` to its `index.html`, so asset paths in `index.html` must be absolute (`/l-games/<slug>/…`). The list is `lib/games.ts`.
 - Games: Monster Packs, Race & Stream (`#autopilot` for tests), Space Lane Shooter (`#autopilot`), THE GAME (`#debug`).
-- "Create a new game" (`app/create/`, `app/api/ideas`): a lesson per visit (`lib/lessons.ts`), 4 questions (`lib/ideas.ts`), then the idea is logged in `game_ideas` and emailed for review via Resend (`RESEND_API_KEY`). Never ask kids for names or contact details there.
+- "Create a new game" (`app/create/`, `app/api/ideas`): a lesson per visit (`lib/lessons.ts`), 4 questions (`lib/ideas.ts`), then the idea is logged in `game_ideas` and emailed for review via Resend (`RESEND_API_KEY`) to everyone in `IDEAS_EMAIL_TO` (default list in `lib/env.ts`). Never ask kids for names or contact details there.
 - Monster Packs real-money store: `lib/store.ts` (prices server-side), `lib/stripe.ts`, `app/api/{offers,checkout,claim}`, table `game_purchases` (Drizzle, `drizzle/`). Closed ("opening soon") until `STRIPE_SECRET_KEY` and `DATABASE_URL` are set in Vercel. `SITE_URL` (default https://schuster.me) is where Stripe sends players back. Selling needs Vercel Pro.
 
 ## Hard rules

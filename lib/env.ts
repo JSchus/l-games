@@ -7,6 +7,9 @@ import { z } from "zod";
  * store simply shows "opening soon"; without RESEND_API_KEY or DATABASE_URL
  * the idea box says "opening soon". The games work either way.
  */
+/** Everyone who gets an email for each new game idea (unless IDEAS_EMAIL_TO says otherwise). */
+export const DEFAULT_IDEA_REVIEWERS = ["info@companychicago.com", "jeff@jeffschuster.com", "jeffsgotmilk@gmail.com"];
+
 const schema = z.object({
   /** Postgres (Neon) for store purchases and the game-idea log. */
   DATABASE_URL: z.string().url().optional(),
@@ -18,8 +21,12 @@ const schema = z.object({
   RESEND_API_KEY: z.string().optional(),
   /** Sender of the idea emails; must be on a domain verified in Resend. */
   IDEAS_EMAIL_FROM: z.string().default("L Games <ideas@mail.schuster.me>"),
-  /** Who reviews new game ideas. */
-  IDEAS_EMAIL_TO: z.string().email().default("info@companychicago.com"),
+  /** Who reviews new game ideas: one or more addresses, separated by commas. */
+  IDEAS_EMAIL_TO: z
+    .string()
+    .default(DEFAULT_IDEA_REVIEWERS.join(","))
+    .transform((s) => s.split(",").map((a) => a.trim()).filter(Boolean))
+    .pipe(z.array(z.string().email()).min(1).max(10)),
 });
 
 export type Env = z.infer<typeof schema>;

@@ -27,4 +27,4 @@ All optional; set them in Vercel. Without them the games work, and the store and
 | `SITE_URL` | Where Stripe sends players back (default https://schuster.me). |
 | `RESEND_API_KEY` | Emails new game ideas (sending access, domain `mail.schuster.me`). |
 | `IDEAS_EMAIL_FROM` | Sender of idea emails (default `L Games <ideas@mail.schuster.me>`). |
-| `IDEAS_EMAIL_TO` | Who reviews ideas (default info@companychicago.com). |
+| `IDEAS_EMAIL_TO` | Who reviews ideas, comma-separated (default: info@companychicago.com, jeff@jeffschuster.com and jeffsgotmilk@gmail.com, in `lib/env.ts`). |
