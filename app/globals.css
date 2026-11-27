@@ -16,6 +16,8 @@ a { color: inherit; }
 .games a:hover { transform: translateY(-4px); }
 .games .emoji { font-size: 3rem; }
 .games .title { font-size: 1.5rem; font-weight: 800; }
+.games .play { width: fit-content; padding: 10px 20px; border-radius: 12px; background: #ffcf3d; color: #241a00; font-weight: 800; }
+.arcade footer { text-align: center; font-size: 0.875rem; opacity: 0.6; }
 .terms { max-width: 42rem; margin: 0 auto; padding: 40px 16px; display: grid; gap: 16px; }
 .terms h1 { font-size: 1.9rem; font-weight: 900; margin: 0; }
 .terms h2 { font-size: 1.2rem; margin: 8px 0 0; }

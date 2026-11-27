@@ -25,10 +25,12 @@ export default function GamesPage() {
               </span>
               <span className="title">{g.title}</span>
               <span className="dim">{g.blurb}</span>
+              <span className="play">▶ Play</span>
             </a>
           </li>
         ))}
       </ul>
+      <footer>More games coming soon!</footer>
     </main>
   );
 }
