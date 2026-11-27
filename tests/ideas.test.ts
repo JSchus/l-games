@@ -107,7 +107,7 @@ describe("the review email", () => {
 });
 
 describe("sending an idea", () => {
-  let sent: { to: string; subject: string; text: string }[];
+  let sent: { to: string[]; subject: string; text: string }[];
   beforeEach(() => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     log.rows = [];
@@ -125,7 +125,7 @@ describe("sending an idea", () => {
     expect(log.rows).toHaveLength(1);
     expect(log.rows[0]).toMatchObject({ emailed: true, row: { kind: "racing", title: "Dragon Drift", deviceId: DEVICE } });
     expect(sent).toHaveLength(1);
-    expect(sent[0]!.to).toBe("info@companychicago.com");
+    expect(sent[0]!.to).toEqual(["info@companychicago.com", "jeff@jeffschuster.com", "jeffsgotmilk@gmail.com"]);
   });
 
   it("still keeps the idea when the email fails", async () => {
@@ -167,5 +167,21 @@ describe("without a database", () => {
     expect(await mem.count(hourAgo, DEVICE)).toBe(1);
     expect(await mem.count(hourAgo, device(5))).toBe(0);
     expect(await mem.count(hourAgo)).toBe(1);
+  });
+});
+
+describe("who gets the idea emails", () => {
+  it("reads a comma-separated list and checks every address", async () => {
+    const saved = process.env.IDEAS_EMAIL_TO;
+    vi.resetModules();
+    process.env.IDEAS_EMAIL_TO = " a@example.com, b@example.com ,";
+    expect((await import("@/lib/env")).env().IDEAS_EMAIL_TO).toEqual(["a@example.com", "b@example.com"]);
+    vi.resetModules();
+    process.env.IDEAS_EMAIL_TO = "a@example.com, not-an-address";
+    const { env } = await import("@/lib/env");
+    expect(() => env()).toThrow(/Invalid environment/);
+    if (saved === undefined) delete process.env.IDEAS_EMAIL_TO;
+    else process.env.IDEAS_EMAIL_TO = saved;
+    vi.resetModules();
   });
 });
