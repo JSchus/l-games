@@ -30,7 +30,12 @@ export default function GamesPage() {
           </li>
         ))}
       </ul>
-      <footer>More games coming soon!</footer>
+      <footer>
+        <span>More games coming soon!</span>
+        <a href="/l-games/create" className="create-link">
+          🎨 Create a new game
+        </a>
+      </footer>
     </main>
   );
 }
